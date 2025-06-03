@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ЕПФК — Головна</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Економіко-правничий фаховий коледж ЗНУ</h1>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="#abiturient">Вступнику</a></li>
+          <li><a href="#news">Новини</a></li>
+          <li><a href="#virtual-tour">Екскурсія</a></li>
+          <li><a href="#graduates">Випускники</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="abiturient" class="section">
+      <div class="container">
+        <h2>Інтерактивний довідник спеціальностей</h2>
+        <label for="filter">Форма навчання:</label>
+        <select id="filter">
+          <option value="all">Усі</option>
+          <option value="денна">Денна</option>
+          <option value="заочна">Заочна</option>
+        </select>
+        <div id="specialties" class="card-grid">
+          <!-- Спеціальності завантажуються скриптом -->
+        </div>
+        <button id="tuition-calculator" class="btn">Розрахувати вартість</button>
+      </div>
+    </section>
+
+    <section id="news" class="section">
+      <div class="container">
+        <h2>Новини та події</h2>
+        <div class="tabs">
+          <button data-category="abitur">Абітурієнтам</button>
+          <button data-category="students">Студентам</button>
+          <button data-category="science">Наука</button>
+          <button data-category="announcements">Оголошення</button>
+        </div>
+        <div id="news-list" class="news-grid">
+          <!-- Новини завантажуються динамічно -->
+        </div>
+      </div>
+    </section>
+
+    <section id="virtual-tour" class="section">
+      <div class="container">
+        <h2>Віртуальна екскурсія</h2>
+        <video controls width="100%">
+          <source src="media/tour.mp4" type="video/mp4">
+          Ваш браузер не підтримує відтворення відео.
+        </video>
+      </div>
+    </section>
+
+    <section id="graduates" class="section">
+      <div class="container">
+        <h2>Успішні випускники</h2>
+        <div class="graduates-list">
+          <!-- Динамічні картки випускників -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <form id="survey">
+        <label>Чи була корисною ця сторінка?
+          <input type="radio" name="feedback" value="yes" /> Так
+          <input type="radio" name="feedback" value="no" /> Ні
+        </label>
+        <button type="submit">Надіслати</button>
+      </form>
+      <p>&copy; 2025 ЕПФК ЗНУ. Всі права захищено.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
