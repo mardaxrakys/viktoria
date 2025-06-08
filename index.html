@@ -48,7 +48,7 @@ branding.
               <a href="#" class="hover:text-green-200 transition">Вартість</a>
               <a href="#" class="hover:text-green-200 transition">Контакти</a>
             </nav>
-            <button class="md:hidden">
+            <button class="md:hidden" id="menu-toggle">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="h-6 w-6"
@@ -63,6 +63,17 @@ branding.
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
+              <nav
+                id="mobile-menu"
+                class="transition-all duration-300 hidden flex flex-col space-y-2 mt-2 md:hidden"
+              >
+                <a href="#" class="hover:text-green-600 px-4 py-2">Головна</a>
+                <a href="#" class="hover:text-green-600 px-4 py-2"
+                  >Спеціальності</a
+                >
+                <a href="#" class="hover:text-green-600 px-4 py-2">Вартість</a>
+                <a href="#" class="hover:text-green-600 px-4 py-2">Контакти</a>
+              </nav>
             </button>
           </div>
         </div>
@@ -216,7 +227,7 @@ branding.
                 Оберіть параметри для розрахунку вартості навчання.
               </p>
 
-              <div class="grid md:grid-cols-2 gap-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <div>
                   <div class="mb-4">
                     <label
@@ -428,7 +439,7 @@ branding.
 
               <div class="overflow-x-auto">
                 <table
-                  class="min-w-full bg-white border border-gray-200 rounded-lg"
+                  class="min-w-full text-sm md:text-base bg-white border border-gray-200 rounded-lg"
                 >
                   <thead>
                     <tr class="bg-gray-100">
