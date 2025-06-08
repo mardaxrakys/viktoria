@@ -5,18 +5,19 @@ branding.
 <html lang="uk">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Портал для вступників ЕПФК ЗНУ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
-      href="styles.css"
     />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <!-- #region---------------------- Header-->
+
     <div class="min-h-screen flex flex-col">
-      <!-- Header -->
       <header
         class="bg-gradient-to-r from-green-800 to-green-600 text-white shadow-lg"
       >
@@ -67,8 +68,9 @@ branding.
           </div>
         </div>
       </header>
+      <!-- #endregion -->
 
-      <!-- Main Content -->
+      <!-- #region-------------------- Main Content -->
       <main class="flex-grow container mx-auto px-4 py-8">
         <div class="bg-white rounded-lg shadow-md p-6 mb-8">
           <h2 class="text-2xl font-semibold text-gray-800 mb-4">
@@ -479,8 +481,9 @@ branding.
           </div>
         </div>
       </main>
+      <!-- #endregion -->
 
-      <!-- Footer -->
+      <!-- #region ------------------- Footer -->
       <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-4">
           <div class="grid md:grid-cols-3 gap-8">
@@ -561,8 +564,9 @@ branding.
         </div>
       </footer>
     </div>
+    <!-- #endregion -->
 
-    <!-- Modal for specialty details -->
+    <!-- #region --------------------- Modal for specialty details -->
     <div
       id="specialty-modal"
       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
@@ -606,504 +610,14 @@ branding.
         </div>
       </div>
     </div>
+    <!-- #endregion -->
 
-    <script>
-      // Chatbot functionality
-      const chatMessages = document.getElementById("chat-messages");
-      const chatInput = document.getElementById("chat-input");
-      const sendButton = document.getElementById("send-message");
-
-      const chatbotResponses = {
-        вступ:
-          "Для вступу до ЕПФК ЗНУ вам необхідно подати заяву через електронний кабінет вступника, додати необхідні документи та сертифікати ЗНО/НМТ. Детальніше можна дізнатися на сайті коледжу в розділі 'Вступнику'.",
-        документи:
-          "Для вступу потрібні: паспорт, ІПН, свідоцтво про базову/повну загальну середню освіту з додатком, сертифікати ЗНО/НМТ (для вступу на основі 11 класів), 4 фотокартки 3х4 см, військовий квиток або приписне свідоцтво (для юнаків).",
-        терміни:
-          "Основні етапи вступної кампанії: реєстрація електронних кабінетів - з 1 липня, прийом заяв та документів - з 10 до 22 липня, вступні випробування - з 23 до 30 липня, оприлюднення рейтингових списків - 1 серпня, зарахування - до 10 серпня.",
-        спеціальності:
-          "ЕПФК ЗНУ пропонує широкий спектр спеціальностей на різних відділеннях. Для детальної інформації перейдіть на вкладку 'Довідник спеціальностей' на цій сторінці.",
-        вартість:
-          "Вартість навчання залежить від обраної спеціальності, форми та рівня навчання. Для розрахунку орієнтовної вартості скористайтеся вкладкою 'Калькулятор вартості' на цій сторінці.",
-        гуртожиток:
-          "ЕПФК ЗНУ надає місця в гуртожитках для іногородніх студентів. Місця надаються першочергово студентам першого курсу. Вартість проживання - від 700 до 1000 грн на місяць залежно від умов.",
-        стипендія:
-          "Академічна стипендія призначається студентам-бюджетникам за результатами сесії. Розмір - від 1100 до 1600 грн залежно від курсу та успішності. Також є соціальні стипендії для пільгових категорій студентів.",
-        контакти:
-          "Приймальна комісія: м. Запоріжжя, вул. Жуковського, 66, тел.: (061) 228-75-00, email: vstup@epfc.znu.edu.ua. Графік роботи: пн-пт з 9:00 до 17:00, сб з 9:00 до 13:00.",
-        бюджет:
-          "Кількість бюджетних місць визначається щороку Міністерством освіти і науки України. Розподіл відбувається за конкурсом відповідно до рейтингового бала вступників.",
-        пільги:
-          "Право на першочергове зарахування мають: діти-сироти, діти з інвалідністю, учасники бойових дій та їхні діти, внутрішньо переміщені особи та інші категорії відповідно до законодавства.",
-      };
-
-      function addMessage(message, isUser) {
-        const messageDiv = document.createElement("div");
-        messageDiv.className = `chatbot-message ${
-          isUser ? "user-message" : "bot-message"
-        }`;
-        messageDiv.textContent = message;
-        chatMessages.appendChild(messageDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-      }
-
-      function getBotResponse(message) {
-        message = message.toLowerCase();
-
-        for (const keyword in chatbotResponses) {
-          if (message.includes(keyword)) {
-            return chatbotResponses[keyword];
-          }
-        }
-
-        return "Вибачте, я не маю інформації з цього питання. Спробуйте запитати про вступ, документи, терміни, спеціальності, вартість, гуртожиток, стипендію, контакти, бюджет або пільги.";
-      }
-
-      function sendMessage() {
-        const message = chatInput.value.trim();
-        if (message) {
-          addMessage(message, true);
-          chatInput.value = "";
-
-          setTimeout(() => {
-            const response = getBotResponse(message);
-            addMessage(response, false);
-          }, 500);
-        }
-      }
-
-      sendButton.addEventListener("click", sendMessage);
-      chatInput.addEventListener("keypress", (e) => {
-        if (e.key === "Enter") {
-          sendMessage();
-        }
-      });
-
-      // Tab switching functionality
-      function switchTab(tabId) {
-        // Hide all tab contents
-        document.querySelectorAll(".tab-content").forEach((content) => {
-          content.classList.add("hidden");
-        });
-
-        // Remove active class from all tabs
-        document.querySelectorAll(".tab").forEach((tab) => {
-          tab.classList.remove("tab-active");
-        });
-
-        // Show selected tab content and mark tab as active
-        document.getElementById(`content-${tabId}`).classList.remove("hidden");
-        document.getElementById(`tab-${tabId}`).classList.add("tab-active");
-      }
-
-      // Calculator functionality
-      const calculateButton = document.getElementById("calculate-button");
-      const calculationResult = document.getElementById("calculation-result");
-
-      calculateButton.addEventListener("click", () => {
-        const educationLevel = document.getElementById("education-level").value;
-        const faculty = document.getElementById("faculty").value;
-        const form = document.getElementById("form").value;
-
-        // Sample calculation logic (in a real app, this would be more complex)
-        let semesterCost = 0;
-
-        if (educationLevel === "junior") {
-          if (faculty === "economics" || faculty === "law") {
-            semesterCost = form === "full-time" ? 10500 : 8500;
-          } else if (faculty === "it") {
-            semesterCost = form === "full-time" ? 11800 : 9800;
-          } else {
-            semesterCost = form === "full-time" ? 9500 : 7500;
-          }
-        } else {
-          // bachelor
-          if (faculty === "economics" || faculty === "law") {
-            semesterCost = form === "full-time" ? 12500 : 10500;
-          } else if (faculty === "it") {
-            semesterCost = form === "full-time" ? 13800 : 11800;
-          } else {
-            semesterCost = form === "full-time" ? 11500 : 9500;
-          }
-        }
-
-        const yearCost = semesterCost * 2;
-        const totalCost =
-          educationLevel === "junior" ? yearCost * 3 : yearCost * 4;
-
-        document.getElementById(
-          "semester-cost"
-        ).textContent = `${semesterCost.toLocaleString()} грн`;
-        document.getElementById(
-          "year-cost"
-        ).textContent = `${yearCost.toLocaleString()} грн`;
-        document.getElementById("total-cost").textContent = `${Math.round(
-          totalCost
-        ).toLocaleString()} грн`;
-
-        calculationResult.classList.remove("hidden");
-      });
-
-      // Specialty directory functionality
-      const specialties = [
-        {
-          id: 1,
-          code: "071",
-          name: "Облік і оподаткування",
-          level: "junior",
-          forms: ["full-time", "part-time"],
-          duration: "2.10",
-          description:
-            "Підготовка фахівців з обліку і оподаткування, здатних розв'язувати типові спеціалізовані задачі та практичні проблеми у сфері обліку та оподаткування.",
-          career:
-            "Бухгалтер, помічник аудитора, фахівець з оподаткування, касир.",
-          continuation: true,
-        },
-        {
-          id: 2,
-          code: "072",
-          name: "Фінанси, банківська справа та страхування",
-          level: "junior",
-          forms: ["full-time", "part-time"],
-          duration: "2.10",
-          description:
-            "Підготовка фахівців з фінансів, банківської справи та страхування, здатних розв'язувати типові спеціалізовані задачі та практичні проблеми у сфері фінансів, банківської справи та страхування.",
-          career:
-            "Фінансовий консультант, страховий агент, банківський працівник, касир.",
-          continuation: true,
-        },
-        {
-          id: 3,
-          code: "081",
-          name: "Право",
-          level: "junior",
-          forms: ["full-time", "part-time"],
-          duration: "2.10",
-          description:
-            "Підготовка фахівців у галузі права, здатних розв'язувати типові спеціалізовані задачі та практичні проблеми у сфері права.",
-          career:
-            "Помічник юриста, помічник нотаріуса, секретар суду, діловод.",
-          continuation: true,
-        },
-        {
-          id: 4,
-          code: "121",
-          name: "Інженерія програмного забезпечення",
-          level: "junior",
-          forms: ["full-time"],
-          duration: "3.10",
-          description:
-            "Підготовка фахівців з інженерії програмного забезпечення, здатних розв'язувати типові спеціалізовані задачі та практичні проблеми у сфері розробки програмного забезпечення.",
-          career:
-            "Молодший розробник програмного забезпечення, тестувальник, фахівець з технічної підтримки.",
-          continuation: true,
-        },
-        {
-          id: 5,
-          code: "241",
-          name: "Готельно-ресторанна справа",
-          level: "junior",
-          forms: ["full-time", "part-time"],
-          duration: "2.10",
-          description:
-            "Підготовка фахівців з готельно-ресторанної справи, здатних розв'язувати типові спеціалізовані задачі та практичні проблеми у сфері готельного та ресторанного бізнесу.",
-          career:
-            "Адміністратор готелю, менеджер ресторану, фахівець з обслуговування.",
-          continuation: true,
-        },
-        {
-          id: 6,
-          code: "242",
-          name: "Туризм",
-          level: "junior",
-          forms: ["full-time", "part-time"],
-          duration: "2.10",
-          description:
-            "Підготовка фахівців з туризму, здатних розв'язувати типові спеціалізовані задачі та практичні проблеми у сфері туризму.",
-          career:
-            "Туристичний агент, екскурсовод, фахівець з туристичного обслуговування.",
-          continuation: true,
-        },
-        {
-          id: 7,
-          code: "071",
-          name: "Облік і оподаткування",
-          level: "bachelor",
-          forms: ["full-time", "part-time"],
-          duration: "1.10",
-          description:
-            "Підготовка бакалаврів з обліку і оподаткування, здатних розв'язувати складні спеціалізовані задачі та практичні проблеми у сфері обліку та оподаткування.",
-          career:
-            "Бухгалтер, аудитор, податковий консультант, фінансовий аналітик.",
-          continuation: true,
-        },
-        {
-          id: 8,
-          code: "072",
-          name: "Фінанси, банківська справа та страхування",
-          level: "bachelor",
-          forms: ["full-time", "part-time"],
-          duration: "1.10",
-          description:
-            "Підготовка бакалаврів з фінансів, банківської справи та страхування, здатних розв'язувати складні спеціалізовані задачі та практичні проблеми у сфері фінансів, банківської справи та страхування.",
-          career:
-            "Фінансовий аналітик, кредитний експерт, страховий агент, фінансовий консультант.",
-          continuation: true,
-        },
-        {
-          id: 9,
-          code: "081",
-          name: "Право",
-          level: "bachelor",
-          forms: ["full-time", "part-time"],
-          duration: "1.10",
-          description:
-            "Підготовка бакалаврів у галузі права, здатних розв'язувати складні спеціалізовані задачі та практичні проблеми у сфері права.",
-          career: "Юрист, юрисконсульт, помічник адвоката, помічник нотаріуса.",
-          continuation: true,
-        },
-        {
-          id: 10,
-          code: "121",
-          name: "Інженерія програмного забезпечення",
-          level: "bachelor",
-          forms: ["full-time"],
-          duration: "1.10",
-          description:
-            "Підготовка бакалаврів з інженерії програмного забезпечення, здатних розв'язувати складні спеціалізовані задачі та практичні проблеми у сфері розробки програмного забезпечення.",
-          career:
-            "Розробник програмного забезпечення, тестувальник, системний аналітик, проектний менеджер.",
-          continuation: true,
-        },
-      ];
-
-      function displaySpecialties(filteredSpecialties = specialties) {
-        const tableBody = document.getElementById("specialties-table");
-        const noResults = document.getElementById("no-results");
-
-        tableBody.innerHTML = "";
-
-        if (filteredSpecialties.length === 0) {
-          noResults.classList.remove("hidden");
-          return;
-        }
-
-        noResults.classList.add("hidden");
-
-        filteredSpecialties.forEach((specialty) => {
-          const row = document.createElement("tr");
-          row.className = "hover:bg-gray-50";
-
-          const levelText =
-            specialty.level === "junior"
-              ? "Фаховий молодший бакалавр"
-              : "Бакалавр";
-          const formsText = specialty.forms
-            .map((form) => {
-              if (form === "full-time") return "Денна";
-              return "Заочна";
-            })
-            .join(", ");
-
-          row.innerHTML = `
-                    <td class="py-3 px-4 border-b">${specialty.code}</td>
-                    <td class="py-3 px-4 border-b">${specialty.name}</td>
-                    <td class="py-3 px-4 border-b">${levelText}</td>
-                    <td class="py-3 px-4 border-b">${formsText}</td>
-                    <td class="py-3 px-4 border-b">${specialty.duration} років</td>
-                    <td class="py-3 px-4 border-b">
-                        <button class="view-specialty bg-green-600 text-white px-3 py-1 rounded-md hover:bg-green-700 transition text-sm" data-id="${specialty.id}">
-                            Детальніше
-                        </button>
-                    </td>
-                `;
-
-          tableBody.appendChild(row);
-        });
-
-        // Add event listeners to view buttons
-        document.querySelectorAll(".view-specialty").forEach((button) => {
-          button.addEventListener("click", () => {
-            const specialtyId = parseInt(button.getAttribute("data-id"));
-            showSpecialtyDetails(specialtyId);
-          });
-        });
-      }
-
-      function filterSpecialties() {
-        const levelFilter = document.getElementById("filter-level").value;
-        const formFilter = document.getElementById("filter-form").value;
-        const durationFilter = document.getElementById("filter-duration").value;
-        const searchQuery = document
-          .getElementById("search-specialty")
-          .value.toLowerCase();
-
-        let filtered = specialties;
-
-        if (levelFilter !== "all") {
-          filtered = filtered.filter(
-            (specialty) => specialty.level === levelFilter
-          );
-        }
-
-        if (formFilter !== "all") {
-          filtered = filtered.filter((specialty) =>
-            specialty.forms.includes(formFilter)
-          );
-        }
-
-        if (durationFilter !== "all") {
-          filtered = filtered.filter(
-            (specialty) => specialty.duration === durationFilter
-          );
-        }
-
-        if (searchQuery) {
-          filtered = filtered.filter(
-            (specialty) =>
-              specialty.name.toLowerCase().includes(searchQuery) ||
-              specialty.code.includes(searchQuery)
-          );
-        }
-
-        displaySpecialties(filtered);
-      }
-
-      // Add event listeners for filters
-      document
-        .getElementById("filter-level")
-        .addEventListener("change", filterSpecialties);
-      document
-        .getElementById("filter-form")
-        .addEventListener("change", filterSpecialties);
-      document
-        .getElementById("filter-duration")
-        .addEventListener("change", filterSpecialties);
-      document
-        .getElementById("search-specialty")
-        .addEventListener("input", filterSpecialties);
-
-      // Modal functionality
-      const modal = document.getElementById("specialty-modal");
-      const closeModal = document.getElementById("close-modal");
-      const modalCloseButton = document.getElementById("modal-close-button");
-
-      function showSpecialtyDetails(specialtyId) {
-        const specialty = specialties.find((s) => s.id === specialtyId);
-
-        if (!specialty) return;
-
-        const modalTitle = document.getElementById("modal-title");
-        const modalContent = document.getElementById("modal-content");
-
-        modalTitle.textContent = `${specialty.code} ${specialty.name}`;
-
-        const levelText =
-          specialty.level === "junior"
-            ? "Фаховий молодший бакалавр"
-            : "Бакалавр";
-        const formsText = specialty.forms
-          .map((form) => {
-            if (form === "full-time") return "Денна";
-            return "Заочна";
-          })
-          .join(", ");
-
-        modalContent.innerHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                    <div class="bg-green-50 p-4 rounded-lg">
-                        <h4 class="font-medium text-gray-800 mb-2">Освітній рівень</h4>
-                        <p>${levelText}</p>
-                    </div>
-                    <div class="bg-green-50 p-4 rounded-lg">
-                        <h4 class="font-medium text-gray-800 mb-2">Форма навчання</h4>
-                        <p>${formsText}</p>
-                    </div>
-                    <div class="bg-green-50 p-4 rounded-lg">
-                        <h4 class="font-medium text-gray-800 mb-2">Тривалість навчання</h4>
-                        <p>${specialty.duration} років</p>
-                    </div>
-                </div>
-                
-                <div class="mb-4">
-                    <h4 class="font-medium text-gray-800 mb-2">Опис спеціальності</h4>
-                    <p class="text-gray-600">${specialty.description}</p>
-                </div>
-                
-                <div class="mb-4">
-                    <h4 class="font-medium text-gray-800 mb-2">Кар'єрні можливості</h4>
-                    <p class="text-gray-600">${specialty.career}</p>
-                </div>
-                
-                <div class="mb-4">
-                    <h4 class="font-medium text-gray-800 mb-2">Можливість продовження навчання</h4>
-                    <p class="text-gray-600">${
-                      specialty.continuation
-                        ? "Так, можливе продовження навчання на наступному освітньому рівні в ЕПФК ЗНУ або ЗНУ."
-                        : "Ні, продовження навчання на наступному освітньому рівні в ЕПФК ЗНУ неможливе."
-                    }</p>
-                </div>
-                
-                <div class="mt-6">
-                    <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition">
-                        Подати заявку на вступ
-                    </button>
-                </div>
-            `;
-
-        modal.classList.remove("hidden");
-      }
-
-      function hideModal() {
-        modal.classList.add("hidden");
-      }
-
-      closeModal.addEventListener("click", hideModal);
-      modalCloseButton.addEventListener("click", hideModal);
-
-      // Close modal when clicking outside
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) {
-          hideModal();
-        }
-      });
-
-      // Initialize specialty table
-      displaySpecialties();
-
-      // Faculty-specialty relationship for calculator
-      document
-        .getElementById("faculty")
-        .addEventListener("change", function () {
-          const faculty = this.value;
-          const specialtySelect = document.getElementById("specialty");
-          specialtySelect.innerHTML =
-            '<option value="default">Оберіть спеціальність</option>';
-
-          const facultySpecialties = {
-            economics: [
-              "Облік і оподаткування",
-              "Фінанси, банківська справа та страхування",
-              "Економіка",
-              "Підприємництво, торгівля та біржова діяльність",
-            ],
-            law: ["Право"],
-            it: [
-              "Інженерія програмного забезпечення",
-              "Комп'ютерні науки",
-              "Кібербезпека",
-            ],
-            tourism: ["Туризм", "Готельно-ресторанна справа"],
-          };
-
-          if (faculty in facultySpecialties) {
-            facultySpecialties[faculty].forEach((specialty) => {
-              const option = document.createElement("option");
-              option.value = specialty.toLowerCase().replace(/\s+/g, "-");
-              option.textContent = specialty;
-              specialtySelect.appendChild(option);
-            });
-          }
-        });
-    </script>
+    <!-- Підключаємо всі JS у правильному порядку -->
+    <script src="js/chatbot.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/directory.js"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/tabs.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
